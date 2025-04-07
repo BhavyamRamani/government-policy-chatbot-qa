@@ -5,7 +5,7 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
 # Set your Gemini API key
-GEMINI_API_KEY = "AIzaSyCd-IfRoqVwcnegHUb3UdMhODStOEC_ZMQ"
+GEMINI_API_KEY = "["your api key"]"
 
 def load_pdfs(paths):
     """Load and extract text from list of PDF file paths."""
