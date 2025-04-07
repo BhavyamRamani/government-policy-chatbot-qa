@@ -4,7 +4,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmb
 from langchain_community.vectorstores import FAISS
 from langchain.schema import SystemMessage, HumanMessage
 
-GEMINI_API_KEY = "AIzaSyBNIY7M8dspr7ckk8r9F7KKMHBJNxqIE5Y"
+GEMINI_API_KEY = "["your api key"]"
 
 def load_vector_store():
     embeddings = GoogleGenerativeAIEmbeddings(
