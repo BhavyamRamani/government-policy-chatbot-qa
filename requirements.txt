@@ -1,0 +1,12 @@
+streamlit
+PyPDF2
+sentence-transformers
+faiss-cpu
+langchain
+transformers
+accelerate
+deep-translator
+datasets
+peft
+scipy
+scikit-learn
