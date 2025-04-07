@@ -24,7 +24,7 @@ def generate_answer(question, context_docs):
     context_text = "\n\n".join(context_docs) if context_docs else "No relevant info."
 
     messages = [
-        SystemMessage(content="You are a helpful assistant answering questions about HR policies."),
+        SystemMessage(content="You are a helpful assistant answering questions about government policies."),
         HumanMessage(content=f"Context:\n{context_text}\n\nQuestion: {question}")
     ]
 
