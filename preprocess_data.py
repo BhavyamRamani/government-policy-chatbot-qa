@@ -1,11 +1,11 @@
 import os
 import pdfplumber
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import SentenceTransformerEmbeddings
 from langchain_community.vectorstores import FAISS
 
 # Set your Gemini API key
-GEMINI_API_KEY = "["your api key"]"
+GEMINI_API_KEY = ""
 
 def load_pdfs(paths):
     """Load and extract text from list of PDF file paths."""
@@ -30,10 +30,8 @@ def process_and_add_pdfs(pdf_paths):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     docs = text_splitter.create_documents(texts)
 
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",
-        google_api_key=GEMINI_API_KEY
-    )
+    embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+
 
     # If index already exists, update it
     if os.path.exists("faiss_index"):
