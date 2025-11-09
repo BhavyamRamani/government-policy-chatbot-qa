@@ -1,16 +1,13 @@
 # qa_system.py
 import os
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.vectorstores import FAISS
-from langchain.schema import SystemMessage, HumanMessage
+from langchain_core.messages import SystemMessage, HumanMessage
 
-GEMINI_API_KEY = "["your api key"]"
-
+# ✅ Use HuggingFace for embeddings (local, free)
 def load_vector_store():
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",
-        google_api_key=GEMINI_API_KEY
-    )
+    embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
     return FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
 
 def retrieve_relevant_docs(question, k=3):
@@ -18,8 +15,11 @@ def retrieve_relevant_docs(question, k=3):
     docs = vector_db.similarity_search(question, k=k)
     return [doc.page_content for doc in docs] if docs else []
 
+# ✅ Still okay to use Gemini for answering (not embeddings)
+GEMINI_API_KEY = ""
+
 def generate_answer(question, context_docs):
-    llm = ChatGoogleGenerativeAI(model="models/gemini-1.5-pro-latest", google_api_key=GEMINI_API_KEY)
+    llm = ChatGoogleGenerativeAI(model="models/gemini-2.5-flash", google_api_key=GEMINI_API_KEY)
 
     context_text = "\n\n".join(context_docs) if context_docs else "No relevant info."
 
