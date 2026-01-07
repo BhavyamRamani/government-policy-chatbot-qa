@@ -55,7 +55,7 @@ git clone https://github.com/BhavyamRamani/government-policy-qa.git
 cd government-policy-qa
 pip install -r requirements.txt
 streamlit run app.py
-
+```
 ---
 
 ## Project Structure
